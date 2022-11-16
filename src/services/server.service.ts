@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
-import { Server, Socket } from "socket.io";
 
 import isAuth from '../middleWares/isAuth';
 import mung from '../middleWares/mung';
@@ -16,10 +15,11 @@ import pointsRouter from '../routes/pointsRouter';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../../swagger.json';
 
+const io = require('socket.io');
 
 export const app = express();
 export const server = http.createServer(app);
-export const socket = new Server(server, {
+export const socket = new io.Server(server, {
   cors: {
     origin: '*'
   }
